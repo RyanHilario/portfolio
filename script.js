@@ -22,3 +22,24 @@ function initScrollToSection() {
   }
 }
 initScrollToSection();
+
+function initEmergeAnimation() {
+  const sections = document.querySelectorAll(".js-emerge");
+  const windowParte = window.innerHeight * 0.6;
+
+  if (sections.length) {
+    function handleEmerge() {
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const isSectionVisible = sectionTop - windowParte < 0;
+        if (isSectionVisible) {
+          section.classList.add("ativo");
+        }
+      });
+    }
+
+    handleEmerge();
+    window.addEventListener("scroll", handleEmerge);
+  }
+}
+initEmergeAnimation();
